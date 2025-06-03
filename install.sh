@@ -11,9 +11,9 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-echo "Installing MPlayer, fbi and rpd-plym-splash"
+echo "Installing git, MPlayer, fbi and rpd-plym-splash"
 
-apt update && apt upgrade -y && apt install -y mplayer fbi rpd-plym-splash
+apt update && apt upgrade -y && apt install -y git mplayer fbi rpd-plym-splash
 
 echo "Creating /opt/display"
 
