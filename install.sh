@@ -25,6 +25,8 @@ echo "Cloning"
 
 git clone https://github.com/WEEE-Open/display.git /opt/display
 
+chmod +x *
+
 echo "Enabling HDMI hotplug"
 
 echo "hdmi_force_hotplug=1" >> /boot/firmware/config.txt
