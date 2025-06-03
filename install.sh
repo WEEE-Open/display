@@ -37,7 +37,7 @@ echo "dtoverlay=tc358743" >> /boot/firmware/config.txt
 
 echo "Setting resolution"
 
-echo -n " video=HDMI-A-1:800x480M@25"
+echo -n " video=HDMI-A-1:800x480M@25" > /boot/firmware/cmdline.txt
 
 echo "Enabling autologin"
 
@@ -54,7 +54,7 @@ systemctl enable display
 
 echo "Adding splash screen"
 
-cp splashscreen.png /run/media/enrico/rootfs/usr/share/plymouth/themes/pix/splash.png
+cp splashscreen.png /usr/share/plymouth/themes/pix/splash.png
 raspi-config nonint do_boot_splash 0
 
 echo "Adding no video screen"
