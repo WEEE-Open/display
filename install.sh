@@ -17,7 +17,7 @@ apt update && apt upgrade -y && apt install -y mplayer fbi rpd-plym-splash
 
 echo "Creating /opt/display"
 
-mkdir -r /opt/display
+mkdir /opt/display
 
 cd /opt/display
 
