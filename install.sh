@@ -53,7 +53,7 @@ systemctl enable display
 echo "Adding splash screen"
 
 cp splashscreen.png /run/media/enrico/rootfs/usr/share/plymouth/themes/pix/splash.png
-raspi-config nonint do_boot_splash 1
+raspi-config nonint do_boot_splash 0
 
 echo "Adding no video screen"
 
@@ -80,6 +80,20 @@ case "${choice,,}" in
     ;;
   n|no)
     echo "Skipping"
+    ;;
+  *)
+    echo "Invalid input. Please enter y or n."
+    ;;
+esac
+
+read -p "Would you like to lock the filesystem to preven overwrite? [y/n]: " choice
+case "${choice,,}" in
+  y|yes)
+    echo "Locking file system"
+    raspi-config nonint do_overlayfs 0
+    sudo reboot
+    ;;
+  n|no)
     ;;
   *)
     echo "Invalid input. Please enter y or n."
