@@ -1,0 +1,14 @@
+[Unit]
+Description=Run the display service by WEEE Open
+Documentation=https://github.com/WEEE-Open/display
+
+[Service]
+ExecStart=/bin/bash start.sh
+WorkingDirectory=/opt/display
+Restart=always
+RestartSec=5
+Type=simple
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
