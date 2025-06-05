@@ -1,14 +1,18 @@
 [Unit]
 Description=Run the display service by WEEE Open
 Documentation=https://github.com/WEEE-Open/display
+StartLimitBurst=5
+StartLimitIntervalSec=30
 
 [Service]
 ExecStart=/bin/bash start.sh
 WorkingDirectory=/opt/display
 Restart=always
-RestartSec=5
+RestartSec=2
+TimeoutStopSec=5
 Type=simple
-KillMode=process
+KillMode=control-group
+RemainAfterExit=no
 
 [Install]
 WantedBy=multi-user.target

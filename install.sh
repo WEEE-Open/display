@@ -37,7 +37,7 @@ echo "dtoverlay=tc358743" >> /boot/firmware/config.txt
 
 echo "Setting resolution"
 
-echo -n " video=HDMI-A-1:800x480M@25" > /boot/firmware/cmdline.txt
+sed -i '1s/$/ video=HDMI-A-1:800x480M@25/' /boot/firmware/cmdline.txt
 
 echo "Enabling autologin"
 
