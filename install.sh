@@ -56,6 +56,8 @@ echo "Adding splash screen"
 
 cp splashscreen.png /usr/share/plymouth/themes/pix/splash.png
 raspi-config nonint do_boot_splash 0
+systemctl mask plymouth-quit
+echo "plymouth quit" >> ~/.bashrc
 
 echo "Adding no video screen"
 
