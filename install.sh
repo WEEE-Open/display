@@ -56,12 +56,11 @@ echo "Adding splash screen"
 
 cp splashscreen.png /usr/share/plymouth/themes/pix/splash.png
 raspi-config nonint do_boot_splash 0
-systemctl mask plymouth-quit
-echo "plymouth quit" >> ~/.bashrc
 
 echo "Adding no video screen"
 
 echo "sudo fbi -T 1 -d /dev/fb0 -noverbose -a /opt/display/novideo.png" >> ~/.bashrc
+#systemctl mask plymouth-quit
 
 read -p "Would you like to disable non-essential proceses (including networking)? [y/n]: " choice
 
