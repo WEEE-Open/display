@@ -61,6 +61,7 @@ echo \
 "if [ -z \"$SSH_CONNECTION\" ] && [[ $- == *i* ]]; then
   fbi -T 1 -d /dev/fb0 -noverbose -a /opt/display/novideo.png
 fi" >> "$AUTOLOGIN_HOME/.bashrc"
+touch "$AUTOLOGIN_HOME/.hushlogin"
 
 read -p "Would you like to disable non-essential proceses (including networking)? [y/n]: " choice
 
