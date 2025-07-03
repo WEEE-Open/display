@@ -57,10 +57,7 @@ echo "Adding splash screen"
 
 cp splashscreen.png /usr/share/plymouth/themes/pix/splash.png
 raspi-config nonint do_boot_splash 0
-echo \
-"if [ -z \"\$SSH_CONNECTION\" ] && [[ $- == *i* ]]; then
-  sudo fbi -T 1 -d /dev/fb0 -noverbose -a /opt/display/novideo.png
-fi" >> "$AUTOLOGIN_HOME/.bashrc"
+echo "sudo fbi -T 1 -d /dev/fb0 -noverbose -a /opt/display/novideo.png" >> "$AUTOLOGIN_HOME/.bashrc"
 touch "$AUTOLOGIN_HOME/.hushlogin"
 
 read -p "Would you like to disable non-essential proceses (including networking)? [y/n]: " choice
