@@ -42,6 +42,7 @@ sed -i '1s/$/ video=HDMI-A-1:800x480M@25/' /boot/firmware/cmdline.txt
 echo "Enabling autologin"
 
 raspi-config nonint do_boot_behaviour B2
+AUTOLOGIN_HOME=$(getent passwd $(grep -oP '(?<=--autologin\s)\w+' /etc/systemd/system/getty@tty1.service.d/autologin.conf) | cut -d: -f6)
 
 echo "Copying systemd service"
 
@@ -56,11 +57,10 @@ echo "Adding splash screen"
 
 cp splashscreen.png /usr/share/plymouth/themes/pix/splash.png
 raspi-config nonint do_boot_splash 0
-
-echo "Adding no video screen"
-
-echo "sudo fbi -T 1 -d /dev/fb0 -noverbose -a /opt/display/novideo.png" >> ~/.bashrc
-#systemctl mask plymouth-quit
+echo \
+"if [ -z \"$SSH_CONNECTION\" ] && [[ $- == *i* ]]; then
+  fbi -T 1 -d /dev/fb0 -noverbose -a /opt/display/novideo.png
+fi" >> "$AUTOLOGIN_HOME/.bashrc"
 
 read -p "Would you like to disable non-essential proceses (including networking)? [y/n]: " choice
 

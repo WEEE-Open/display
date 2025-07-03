@@ -37,6 +37,13 @@ is_hdmi_connected() {
 }
 
 # ---- INITIAL SETUP ----
+echo "Waiting for $DEVICE to become available..."
+
+while [ ! -e $DEVICE ]; do
+  sleep 1
+done
+echo "$DEVICE detected"
+
 echo "Injecting EDID once..."
 v4l2-ctl --set-edid=file=$EDID_FILE --fix-edid-checksums
 sleep 2
